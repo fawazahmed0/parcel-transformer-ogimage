@@ -9,7 +9,7 @@ Inspired by [lukechilds/parcel-plugin-ogimage](https://github.com/lukechilds/par
 ## Install
 
 ```shell
-$ npm install -D parcel-transformer-ogimage
+npm i -D https://github.com/fawazahmed0/parcel-transformer-ogimage
 ```
 
 Create `.parcelrc` file and paste:
