@@ -1,4 +1,3 @@
-const url = require('url');
 const { Transformer } = require('@parcel/plugin');
 
 const getMetaTag = (html, property) => {
@@ -28,13 +27,13 @@ module.exports = new Transformer({
     async transform({ asset }) {
         const html = await asset.getCode();
         try {
-            const ogImageTag = getMetaTag(html, 'og:image');
+        const ogImageTag = getMetaTag(html, 'og:image');
 	    const ogImageContent = getMetaTagContent(ogImageTag);
 
 	    const ogUrlTag = getMetaTag(html, 'og:url');
 	    const ogUrlContent = getMetaTagContent(ogUrlTag);
 
-	    const absoluteOgImageUrl = url.resolve(ogUrlContent, ogImageContent);
+	    const absoluteOgImageUrl = new URL(ogImageContent, ogUrlContent).href;
 	    const ogImageTagAbsoluteUrl = ogImageTag.replace(ogImageContent, absoluteOgImageUrl);
 	    const patchedHtml = html.replace(ogImageTag, ogImageTagAbsoluteUrl);
 
