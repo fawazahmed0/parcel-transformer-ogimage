@@ -34,7 +34,7 @@ module.exports = new Transformer({
 	    const ogUrlContent = getMetaTagContent(ogUrlTag);
         console.log(ogImageContent)
         console.log(ogUrlContent)
-	    const absoluteOgImageUrl = new URL(ogImageContent, ogUrlContent).href;
+	    const absoluteOgImageUrl = new URL(ogImageContent, new URL(ogUrlContent).origin).href;
 	    const ogImageTagAbsoluteUrl = ogImageTag.replace(ogImageContent, absoluteOgImageUrl);
 	    const patchedHtml = html.replace(ogImageTag, ogImageTagAbsoluteUrl);
 
